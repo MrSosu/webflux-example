@@ -1,0 +1,22 @@
+services:
+  postgresql:
+    container_name: postgres_flux_sosu
+    image: postgres
+    environment:
+      POSTGRES_USER: sosu
+      POSTGRES_PASSWORD: sosu
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - my_network
+    restart: unless-stopped
+
+networks:
+  my_network:
+    driver: bridge
+
+volumes:
+  postgres:
